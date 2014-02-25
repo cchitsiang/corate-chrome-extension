@@ -5,13 +5,13 @@
             var self = this;
             self.injectButtons();
 
-            //setInterval(function () {
+            setInterval(function () {
             // for ajax-y applications
-            //     self.injectButtons();
-            //}, 1000);
+                 self.injectButtons();
+            }, 500);
         },
         injectButtons: function () {
-          
+            console.log('check button: ' + $('.highlight-menu-corate').length > 0 ? 'exists' : 'not-exists');
         },
         wireMouseEvents: function () {
 
@@ -71,6 +71,8 @@
     $body.attr("data-corate-initialized", true);
 
     //app.mediumClipper = new MediumClipper();
+
+    MediumClipper.initialize();
 
     // Browser Action
     //////////////////
