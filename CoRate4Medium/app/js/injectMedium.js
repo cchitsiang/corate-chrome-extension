@@ -1,89 +1,76 @@
-﻿function getSelectionText() {
+﻿function hook(original, wrapper) {
+    return function() {
+        wrapper.apply(this, arguments);
+        return original.apply(this, arguments);
+    };
+}
+var HightlightMenuActivatedFn = "z.uB";
+
+var MediumClipper = {
+    codeBlockIndex: 0,
+    initialize: function () {
+        var self = this;
+
+        self.injectButtons();
+        
+        document.onmouseup = function () { self.injectButtons(); };
+        $('div.footer-post-preview').on('click', '*', function () {
+            var lastIcon = $('div.surface:last-child').find(".post-footer-secondary-actions .icons-facebook").parent();
+            $('<a class="btn btn-chromeless corate-button" title="Share this post on CoRate"><span class="corate-icon"></span></a>')
+           .insertAfter(lastIcon);
+        });
+        //setInterval(function () {
+        //    //console.log(self);
+        //    self.injectButtons();
+        //}, 500);
+        //if (z && z.UB) {
+        //    z.UB = hook(z.UB, function() { self.injectButtons(); });
+        //}
+    },
+    injectButtons: function () {
+
+        var activeSurface = $('div.surface:visible');
+        if (activeSurface.find('.highlight-menu-corate').length > 0)
+            return;
+
+        activeSurface.find('.highlight-menu-buttons').append('<li class="highlight-menu-button highlight-menu-corate"><button class="btn-highlight-menu corate-button"><span class="corate-icon">CoRate</span></button></li>');
+
+        var lastIcon = activeSurface.find(".post-footer-secondary-actions .icons-facebook").parent();
+        $('<a class="btn btn-chromeless corate-button" title="Share this post on CoRate"><span class="corate-icon"></span></a>')
+            .insertAfter(lastIcon);
+            
+
+        $('.corate-button').on('click', function () {
+            var selectionText = getSelectionText();
+            if (selectionText.length > 140) {
+                selectionText = selectionText.substring(0, 137) + "...";
+            }
+            alert(selectionText);
+        });
+        //console.log('check button: ' + $('.highlight-menu-corate').length > 0 ? 'exists' : 'not-exists');
+    },
+    wireMouseEvents: function () {
+
+    },
+    wireTooltip: function () {
+
+    },
+    wireClick: function () {
+
+    }
+};
+
+function getSelectionText() {
     var text = "";
     if (window.getSelection) {
         text = window.getSelection().toString();
-    } else if (document.selection && document.selection.type != "Control") {
+    } else if (document.selection && document.selection.type !== "Control") {
         text = document.selection.createRange().text;
     }
     return text;
 }
+
 $(function () {
 
-    $('.highlight-menu-buttons').append('<li class="highlight-menu-button highlight-menu-corate"><button class="btn-highlight-menu corate-button"><span class="corate-icon">CoRate</span></button></li>');
-    
-    $('<a class="btn btn-chromeless corate-button" title="Share this post on CoRate"><span class="corate-icon"></span></a>').insertBefore(".post-footer-secondary-actions a:last-child");
-
-    $('.corate-button').click(function() {
-        var selectionText = getSelectionText();
-        if (selectionText.length > 140) {
-            selectionText = selectionText.substring(0, 137) + "...";}
-        alert(selectionText);
-    });
+    MediumClipper.initialize();
 });
-
-// Message Passing
-//////////////////
-chrome.runtime.onMessage.addListener(
-    function (request, sender, sendResponse) {
-
-        if (request.method == "getSelection") {
-            sendResponse({ data: getSelectionText() });
-        }
-
-        // load storage
-        if (request.action === "storage:load") {
-            chrome.storage.sync.get(request.key, function () {
-            });
-        }
-
-        // save storage
-        if (request.action === "storage:save") {
-            chrome.storage.sync.set({
-                "value": request.value
-            }, function () {
-                sendResponse(true);
-            });
-        }
-
-        // watch for iframe commands
-        if (request.action === "inject:commandWatcher") {
-            chrome.tabs.executeScript(sender.tab.id, {
-                file: "javascript/watcher.js",
-                allFrames: true
-            });
-        }
-
-        // pass to iframe's parent
-        if (request.action === "coRate:close") {
-            chrome.tabs.sendMessage(sender.tab.id, {
-                id: request.action
-            });
-        }
-
-        // open dialog if not already open, refresh otherwise
-        if (request.action === "coRate:openAndRefresh") {
-            chrome.tabs.query({
-                url: "*://app.corate.us/*"
-            }, function (tabs) {
-                if (tabs.length === 0) {
-                    chrome.tabs.create({
-                        url: "https://app.corate.us"
-                    });
-                } else {
-                    var gistBoxTab = tabs[0];
-                    chrome.tabs.update(gistBoxTab.id, {
-                        active: true
-                    });
-
-                    var script = 'var evt = document.createEvent("HTMLEvents");' +
-                        'evt.initEvent("click", true, true );' +
-                        'document.getElementsByClassName("refresh-page")[0].dispatchEvent(evt);';
-
-                    chrome.tabs.executeScript(gistBoxTab.id, {
-                        code: script
-                    });
-                }
-            });
-        }
-    }
-);
