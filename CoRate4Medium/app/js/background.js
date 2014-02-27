@@ -12,7 +12,7 @@
         if (!localStorage["clipperTutorialStarted"]) {
             localStorage["clipperTutorialStarted"] = true;
             chrome.tabs.create({
-                url: "http://www.corate.us/clipper-tutorial"
+                url: "http://www.corate.us/"
             });
         }
     }
