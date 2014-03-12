@@ -13,6 +13,10 @@ var MediumClipper = {
 
         self.injectButtons();
         document.onmouseup = function () { self.injectButtons(); };
+        document.addEventListener("DOMSubtreeModified", function (event) {
+            self.injectButtons();
+
+        });
     },
     injectButtons: function () {
 
@@ -88,14 +92,6 @@ function getPostData() {
         + '</div></div>';
 }
 
-function submitCoRate() {
-
-}
-
-function cancelCoRate() {
-    $('.overlay').remove();
-}
-
 function getSelectionText() {
     var text = "";
     if (window.getSelection) {
@@ -109,12 +105,4 @@ function getSelectionText() {
 $(function () {
 
     MediumClipper.initialize();
-    //setTimeout(function () {
-    //    $('.post-to-post-icon').on('click', function () {
-    //        var lastIcon = $('div.surface:last-child').find(".post-footer-secondary-actions .icons-facebook").parent();
-    //        $('<a class="btn btn-chromeless corate-button" title="Share this post on CoRate"><span class="corate-icon"></span></a>')
-    //            .insertAfter(lastIcon);
-    //    });
-    //}, 1000);
-
 });
