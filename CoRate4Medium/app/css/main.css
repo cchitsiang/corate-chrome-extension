@@ -6,7 +6,7 @@
     width: 16px;
     height: 16px;
     display: inline-block;
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAHNXQABzV0BFcuyNwAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTAw9HKhAAACPElEQVQ4T2NgwAKmGZvozXNxLlmflT59Q3bGjPlubuVAMWMgxqYcIQZUoLGtsmTP/p62vzsbqv6tTU36vyYl8f+O+sp/QLF/O2orDgPV6GM1ZZa1jfOhST0fVyXE/gMq+o8Nr4iK+Hd4av/XuY6OviiGABWrHZrc82G+uxtWjciGzXVy+ndk+oSv001MES7ZXlO+bXViPNzmJZ66/9eEaf5fGaD9f5qJyf+Nser/9+Qp/p9jYwi2YHlk2L/dzXUg7zAwgGw/0N/5F2bLDFPj/78vMf3/f4Ph/9eTrP+fbuAFs0H4wwGO/9OBBoLUHpzQCbLQmGGem2sW0DQUf4NccGehIMSQE6z/t6ep/F/hr/3/aK0s3ItAV/9bFhZSwbAxP7t7fWYaRsBdmiT2//tplv8LnPWxhsuquOh/O+oqZzJsKsztXpeRitWA9/s5cAbqytjofzvrq2YyLPD0zNzdXAs3YJal0f/t6Sr/H67k///1OOv/nZnKYAzyAnJsbK8u+7ciOrIcFIiqByd2wQNxa4oqPNBggQein67nRTHg4KRukKVG4PSwu7V+86q4GLgr5jkY/F/gpI+CZ5obww1YFhr8b39v20F40gYylI/OnvwemP4JJqQ5Dvb/j8+b9nmGubkOSmqc5+LicGzOlPeg5IorKYNsBmle6OPtiTU/AJOn6t6u5u1A//3dAYxnUFSBQnt7Vek/kNj+3vZ9QJu18WdJoCzQBZrLI8PzdzXVTNrVXDsZaEgRKItj0wgABLDCUJKhhEYAAAAASUVORK5CYII=');
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAeJJREFUeNpi/P+JAR3YAHEAENsCsSwQ/wfip0B8GIg3QGkEABkAxWxA3A3E/wngXiDmgOljhLqAE4jXAbEHA3FgN9SV35iABCMQN8M0//nKDsTMDH+/ATm/EDo+v1MGSsK5rkDcDsTMIBdYABnHYTK3bjoz9MzkY3j58guDrZUog7ryP4aZC14x/Pjxm6GmWJzBwXYNSniBXBCDLKIit5dBXoaD4eql2wyzZp9guHCVkUFAgIvhwd3HDE9esKF7JY4FGupwwAQMDQ1VCFtbV4WhMOkoAw/fI4bNuyMY9NQfoRtgBTJAFF3023cmMC0qys3Aww/UBOT6eqzAFpjCsEBEAYxQkZ8//zL8/YE3NhhBBrxGF2Vn+w+m2ViZGJi5gIx/DAxbdkYwnDvvg670LciAoyhCwKh7/grCfPn6C8Ovz7wM+w6HMhSUnGAoqX/P8POzILLqYyADliCLPH5mxXDm/GcGDR1lhh/ffzFsO+TDoKb4mEFDW4lBT1eKgZ3zPbLyxaB0ADKkF4gLQCJfP8gwvP8kwyAicIfhw2cFsCoJ6TPAAAH5DcWtU4E4DzkpbwJiFyKT8j4g9gPZxwQV+A4V6CNC80Qg9gVpBkcDluxsD8SB0OwsBRV7jpSd9yMrBggwANkAsIIzfXmCAAAAAElFTkSuQmCC');
 }
 
 .highlight-menu .highlight-menu-arrow-clip {
@@ -17,4 +17,8 @@
 .notes-highlight
 {
 background: yellow!important;
+}
+
+.yellow {
+    color: #FFF200!important;
 }

@@ -57,8 +57,10 @@
     <Content Include="app\js\background.js" />
     <Content Include="app\js\bootstrap.js" />
     <Content Include="app\js\bootstrap.min.js" />
+    <Content Include="app\js\contentMenu.js" />
     <Content Include="app\js\injectMedium.js" />
     <Content Include="app\js\jquery.js" />
+    <Content Include="app\js\messaging.js" />
     <Content Include="app\options.html" />
     <Content Include="app\popup.html" />
     <Content Include="app\popup.js" />
